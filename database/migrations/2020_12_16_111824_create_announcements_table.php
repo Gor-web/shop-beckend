@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateAnnoucmentsTable extends Migration
+class CreateAnnouncementsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateAnnoucmentsTable extends Migration
      */
     public function up()
     {
-        Schema::create('annoucments', function (Blueprint $table) {
+        Schema::create('announcements', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('title')->nullable();
             $table->text('description')->nullable();
-            $table->string('deadline')->nullable();
             $table->integer('salary')->nullable();
+            $table->string('deadline')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +32,6 @@ class CreateAnnoucmentsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('annoucments');
+        Schema::dropIfExists('announcements');
     }
 }
