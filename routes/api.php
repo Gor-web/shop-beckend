@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\AnnouncementsController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -34,3 +36,10 @@ Route::group([
     Route::post("signUp",[AuthController::class,"signUp"]);
 
 });
+Route::prefix('/announcement')->middleware(['auth'])->group(function () {
+    Route::post('/create',[UserController::class,'createAnnouncements']);
+    Route::post('/add',[UserController::class,'add']);
+    Route::get('/allAnnouncements',[AnnouncementsController::class,'all']);
+    Route::get('/delete/{id}',[AnnouncementsController::class,'delete']);
+});
+
